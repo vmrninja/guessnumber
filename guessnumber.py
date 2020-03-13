@@ -1,14 +1,27 @@
-print(' ')
-print('***********************************************')
-print(' ')
+def banner(message1, message2, message3, border='*'):
+    line = border * len(message2)
+    print(line)
+    print(message1)
+    print(message2)
+    print(message3)
+    print(line)
+
+def bannershort(messageshort1, messageshort2, border='*'):
+    lineshort = border * len(messageshort1)
+    print(lineshort)
+    print(messageshort1)
+    print(messageshort2)
+    print(lineshort)
+
+banner(' ',
+       'WELCOME TO THE GUESSING GAME',
+       ' ')
+
 name = str(input('Hi there, my name is Computer.  What is yours: '))
-print(' ')
-print('***********************************************')
-print(' ')
-print('Nice to meet you ' + name + '.  Let us play a guessing game')
-print('The objective is to guess the right number I am "thinking" between 1 and 100 with the least attempts')
-print(' ')
-print('Let us see how many guesses you need to get it right')
+
+banner('Nice to meet you ' + name + '.  Let us play THE guessing game',
+       'The objective is to guess the right number I am "thinking" between 1 and 100 with the least attempts',
+       'Let us see how many guesses you need to get it right')
 
 import time
 t = time.localtime()
@@ -44,25 +57,19 @@ while answer != mysterynumber:
         continue
     answer = int(stranswer)
     if answer > 100:
-        print('***********************************************')
-        print('Pay attention to the instructions ' + name + '!  Salame')
-        print('Number is under 101')
-        print('***********************************************')
+        bannershort('Pay attention to the instructions ' + name + '!  Salame',
+                    'Number is under 101')
     elif answer < 1:
-        print('***********************************************')
-        print('You clearly can’t follow instructions ' + name + '!')
-        print('Number has to be greater than zero')
-        print('***********************************************')
+        bannershort('You clearly can’t follow instructions ' + name + '!',
+                    'Number has to be greater than zero')
     elif answer > mysterynumber:
-        print('*** Good guess, getting warmer but it’s LOWER than ' + str(answer))
+        bannershort('*** Good guess, getting warmer but it’s LOWER than ' + str(answer), ' ')
     elif answer < mysterynumber:
-        print('*** Almost there, but Mystery Number is HIGHER than ' + str(answer))
+        bannershort('*** Almost there, but Mystery Number is HIGHER than ' + str(answer), ' ')
     else:
-        print('***********************************************')
-        print('GREAT JOB ' + name + '!  You guessed it')
-        print('Mystery number is ' + str(mysterynumber))
-        print('It took you ' + str(guesses) + ' attempts this time')
-        print('***********************************************')
+        banner('GREAT JOB ' + name + '!',
+               'You guessed it.  Mystery number is ' + str(mysterynumber),
+               'It took you ' + str(guesses) + ' attempts this time')
         break
 print(' ')
 if guesses > 30:
